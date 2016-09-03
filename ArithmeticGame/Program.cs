@@ -12,6 +12,7 @@ namespace ArithmeticGame
         static void Main(string[] args)
         {
             const int maxQuestionCount = 100;
+            const string Separator = "----------";
 
             Random random = new Random();
             int correctAnswerCount;
@@ -26,8 +27,9 @@ namespace ArithmeticGame
                 Console.WriteLine("Welcome to Ruben9922's Arithmetic Game!");
                 Console.WriteLine();
 
-                Console.WriteLine("Please enter some options");
-                int questionCount = ConsoleReadUtilities.ReadInt("  Number of questions: ", 1, maxQuestionCount + 1, string.Format("Integers between 1 and {0} inclusive only!", maxQuestionCount));
+                int questionCount = ConsoleReadUtilities.ReadInt("Number of questions: ", 1, maxQuestionCount + 1, string.Format("Integers between 1 and {0} inclusive only!", maxQuestionCount));
+                Console.WriteLine();
+
                 // Input min and max operands, ensuring max is greater than or equal to min
                 // Both min and max operands are inclusive
                 int minOperand;
@@ -35,16 +37,21 @@ namespace ArithmeticGame
                 bool extremaValid;
                 do
                 {
-                    minOperand = ConsoleReadUtilities.ReadInt("  Lowest number: ", 1, null, "  Integers greater than or equal to 1 only!");
-                    maxOperand = ConsoleReadUtilities.ReadInt("  Highest number: ");
+                    minOperand = ConsoleReadUtilities.ReadInt("Lowest number: ", 1, 1001, "Integers between 1 and 1000 inclusive only!");
+                    Console.WriteLine();
+                    maxOperand = ConsoleReadUtilities.ReadInt("Highest number: ", null, 1001, "Integers less than or equal to 1000 only!");
+                    Console.WriteLine();
                     extremaValid = minOperand <= maxOperand;
                     if (!extremaValid)
                     {
-                        Console.WriteLine("  Highest number must be greater than or equal to lowest number!");
+                        Console.WriteLine("Highest number must be greater than or equal to lowest number!");
                     }
                 } while (!extremaValid);
                 int range = maxOperand - minOperand;
                 Console.WriteLine("Choosing numbers between {0} and {1} inclusive", minOperand, maxOperand);
+                Console.WriteLine();
+
+                Console.WriteLine(Separator);
                 Console.WriteLine();
 
                 for (int i = 0; i < questionCount; i++)
@@ -84,14 +91,28 @@ namespace ArithmeticGame
                     }
 
                     // Display current score
-                    Console.WriteLine("Score so far: {0}", score);
-                    Console.WriteLine("{0} out of {1} correct so far", correctAnswerCount, i + 1);
+                    Console.WriteLine();
+                    Console.Write("Score so far: ");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine(score);
+                    Console.Write(correctAnswerCount);
+                    Console.ResetColor();
+                    Console.WriteLine(" out of {0} correct so far", i + 1);
+                    Console.WriteLine();
+
+                    Console.WriteLine(Separator);
                     Console.WriteLine();
                 }
 
                 Console.WriteLine("Game finished!");
-                Console.WriteLine("Score: {0}", score);
-                Console.WriteLine("{0} out of {1}", correctAnswerCount, questionCount);
+
+                Console.Write("Score: ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine(score);
+                Console.Write(correctAnswerCount);
+                Console.ResetColor();
+                Console.WriteLine(" out of {0} correct", questionCount);
+
                 Console.WriteLine();
             } while (ConsoleReadUtilities.ReadYOrN("Play again? (y/n): "));
             Console.WriteLine();

@@ -11,7 +11,7 @@ namespace ArithmeticGame
     {
         static void Main(string[] args)
         {
-            const int maxQuestionCount = 100;
+            const int MaxQuestionCount = 100;
             const string Separator = "----------";
 
             Random random = new Random();
@@ -27,7 +27,7 @@ namespace ArithmeticGame
                 Console.WriteLine("Welcome to Ruben9922's Arithmetic Game!");
                 Console.WriteLine();
 
-                int questionCount = ConsoleReadUtilities.ReadInt("Number of questions: ", 1, maxQuestionCount + 1, string.Format("Integers between 1 and {0} inclusive only!", maxQuestionCount));
+                int questionCount = ConsoleReadUtilities.ReadInt("Number of questions: ", 1, MaxQuestionCount + 1, string.Format("Integers between 1 and {0} inclusive only!", MaxQuestionCount));
                 Console.WriteLine();
 
                 // Input min and max operands, ensuring max is greater than or equal to min

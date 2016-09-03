@@ -91,7 +91,7 @@ namespace ArithmeticGame
                 case Operation.Multiply:
                     return (int x, int y) => x * y;
                 case Operation.Divide:
-                    return (int x, int y) => x / y;
+                    return (int x, int y) => (int)Math.Round((double)x / y);
                 default: // Should never be run
                     return (int x, int y) => 0;
             }

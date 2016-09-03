@@ -83,10 +83,13 @@ namespace ArithmeticGame
                         Console.WriteLine(" Answer is " + actualAnswer);
                     }
 
-                    // Display current score
-                    Console.WriteLine("Score so far: {0}", score);
-                    Console.WriteLine("{0} out of {1} correct so far", correctAnswerCount, i + 1);
-                    Console.WriteLine();
+                    // Display current score (if not on last question, as final score will be displayed immediately after answering last question anyway)
+                    if (i != questionCount - 1)
+                    {
+                        Console.WriteLine("Score so far: {0}", score);
+                        Console.WriteLine("{0} out of {1} correct so far", correctAnswerCount, i + 1);
+                        Console.WriteLine();
+                    }
                 }
 
                 Console.WriteLine("Game finished!");

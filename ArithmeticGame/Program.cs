@@ -14,11 +14,13 @@ namespace ArithmeticGame
             const int maxQuestionCount = 100;
 
             Random random = new Random();
+            int correctAnswerCount;
             int score;
 
             do
             {
-                score = 0; // Could change so score depends on difference between min and max operands
+                correctAnswerCount = 0;
+                score = 0;
 
                 Console.Clear();
                 Console.WriteLine("Welcome to Ruben9922's Arithmetic Game!");
@@ -41,6 +43,7 @@ namespace ArithmeticGame
                         Console.WriteLine("  Highest number must be greater than or equal to lowest number!");
                     }
                 } while (!extremaValid);
+                int range = maxOperand - minOperand;
                 Console.WriteLine("Choosing numbers between {0} and {1} inclusive", minOperand, maxOperand);
                 Console.WriteLine();
 
@@ -69,7 +72,8 @@ namespace ArithmeticGame
                         Console.Write("Correct!");
                         Console.ResetColor();
                         Console.WriteLine(" +1");
-                        score++;
+                        correctAnswerCount++;
+                        score += range;
                     }
                     else
                     {
@@ -80,12 +84,14 @@ namespace ArithmeticGame
                     }
 
                     // Display current score
-                    Console.WriteLine("Score: {0} out of {1} so far", score, i + 1);
+                    Console.WriteLine("Score so far: {0}", score);
+                    Console.WriteLine("{0} out of {1} correct so far", correctAnswerCount, i + 1);
                     Console.WriteLine();
                 }
 
                 Console.WriteLine("Game finished!");
-                Console.WriteLine("Score: {0} out of {1}", score, questionCount);
+                Console.WriteLine("Score: {0}", score);
+                Console.WriteLine("{0} out of {1}", correctAnswerCount, questionCount);
                 Console.WriteLine();
             } while (ConsoleReadUtilities.ReadYOrN("Play again? (y/n): "));
             Console.WriteLine();
